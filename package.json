@@ -8,5 +8,12 @@
     "start": "node app.js"
   },
   "author": "Thomas Ingram",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^5.10.1",
+    "q": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.2.1"
+  }
 }
