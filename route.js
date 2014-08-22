@@ -1,5 +1,5 @@
 var Route = function (method, path, handler) {
-	this.method = method;
+	this.method = method.toUpperCase();
 	this.path = path;
 	this.handle = handler.bind(this);
 };
