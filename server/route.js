@@ -24,7 +24,7 @@ Route.put = function (path, handler) {
 	return Route.build('PUT', path, handler);
 };
 
-Route['delete'] = function (path, handler) {
+Route.delete = function (path, handler) {
 	return Route.build('DELETE', path, handler);
 };
 
