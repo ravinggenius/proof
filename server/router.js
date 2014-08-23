@@ -22,7 +22,7 @@ Router.handle = function (method, path) {
 };
 
 Router.load = function (path) {
-	require(path).forEach(Router.register);
+	require('../' + path).forEach(Router.register);
 };
 
 Router.register = function (route) {

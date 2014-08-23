@@ -1,16 +1,21 @@
-var fs = require('fs');
-
 var Route = require('./route');
 
-var Dog = require('./server').models.Dog;
 
-var clientBundle = require('browserify')('./client');
+var fs = require('fs');
+
+
+var Dog = require('./models').Dog;
+
+
+var config = require('../shared/config');
+
+var clientBundle = require('browserify')('./client', { debug: config.DEBUG_MODE });
 
 
 module.exports = [
 	Route.get('/', function (request, response) {
 		response.writeHead(200, { 'Content-Type': 'text/html' });
-		var stream = fs.createReadStream(__dirname + '/views/index.html');
+		var stream = fs.createReadStream(__dirname + '/../views/index.html');
 		stream.pipe(response);
 	}),
 

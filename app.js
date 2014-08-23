@@ -1,9 +1,10 @@
 var http = require('http');
 
-var app = {};
-var Router = require('./router');
+var Router = require('./server/router');
 
-Router.load('./routes');
+Router.load('./server/routes');
+
+var app = {};
 
 app.server = http.createServer(function (request, response) {
 	Router.handle(request.method, request.url).then(function (route) {
@@ -15,4 +16,9 @@ app.server = http.createServer(function (request, response) {
 	});
 });
 
-app.server.listen(8888);
+if (require.main === module) {
+	var config = require('./shared/config');
+	app.server.listen(config.PORT);
+} else {
+	module.exports = app;
+}
