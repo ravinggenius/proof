@@ -18,7 +18,7 @@ app.server = http.createServer(function (request, response) {
 
 if (require.main === module) {
 	var config = require('./shared/config');
-	app.server.listen(config.PORT);
+	app.server.listen(config.port);
 } else {
 	module.exports = app;
 }

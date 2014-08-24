@@ -9,7 +9,7 @@ var Dog = require('./models').Dog;
 
 var config = require('../shared/config');
 
-var clientBundle = require('browserify')('./client', { debug: config.DEBUG_MODE });
+var clientBundle = require('browserify')('./client', { debug: config.debugMode });
 
 
 module.exports = [

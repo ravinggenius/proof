@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "browserify": "^5.10.1",
+    "conf_conf": "^0.1.0",
     "q": "^1.0.1"
   },
   "devDependencies": {

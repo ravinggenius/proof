@@ -1,21 +1,29 @@
 var _ = require('lodash');
 var fs = require('fs');
+var ConfConf = require('conf_conf');
 
-var defaults = require('../env.json');
-var overrides;
+var localEnv;
 
 try {
-	overrides = require('../env_overrides.json');
+	localEnv = require('../env_local.json');
 } catch (e) {
-	console.warn("\n" + e);
-	throw(e);
+	localEnv = {};
 }
 
-var all = _.merge({}, defaults, overrides);
-var mode = process.env.NODE_ENV || 'development';
+var NODE_ENV = process.env.NODE_ENV || 'development';
 
-var raw = _.merge({}, all.common, all[mode], process.env);
+var raw = _.merge({}, localEnv.common, localEnv[NODE_ENV], process.env);
 
-// TODO typecast, add defaults, enforce required
+module.exports = ConfConf.configure(raw, function (conf) {
+	conf.config('nodeEnv', { default: 'development' });
 
-module.exports = _.merge({}, raw, { _raw: raw });
+	conf.config('port', { default: '8000' });
+
+	conf.config('databaseUser');
+	conf.config('databasePassword');
+	conf.config('databaseName');
+
+	conf.config('debugMode', { default: 'false' }, function (value) {
+		return value === 'true';
+	});
+});
